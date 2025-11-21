@@ -159,6 +159,12 @@
     <Compile Include="FormShowStream.Designer.cs">
       <DependentUpon>FormShowStream.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSoundEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSoundEdit.Designer.cs">
+      <DependentUpon>FormSoundEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="ImageReceiver.cs" />
     <Compile Include="NetworkManager.cs" />
     <Compile Include="PatientCard.cs">
@@ -207,6 +213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormShowStream.resx">
       <DependentUpon>FormShowStream.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSoundEdit.resx">
+      <DependentUpon>FormSoundEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PatientCard.resx">
       <DependentUpon>PatientCard.cs</DependentUpon>

@@ -10,41 +10,36 @@ using System.Windows.Forms;
 
 namespace Hakatonv2
 {
-    public partial class FormSelectBP : Form
+    public partial class FormSoundEdit : Form
     {
-        public FormSelectBP()
+        public FormSoundEdit()
         {
             InitializeComponent();
         }
 
-        private void FormSelectBP_Load(object sender, EventArgs e)
+        private void trackBar1_Scroll(object sender, EventArgs e)
         {
-
+            NetworkManager.SendMessage($"volume|{trackBar1.Value}");
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            NetworkManager.SendMessage($"set_amb|{0}");
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            NetworkManager.SendMessage($"set_amb|{1}");
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            NetworkManager.SendMessage($"set_amb|{2}");
         }
 
-        private void label5_Click(object sender, EventArgs e)
+        private void trackBar2_Scroll(object sender, EventArgs e)
         {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
+            NetworkManager.SendMessage($"video_volume|{trackBar1.Value}");
         }
     }
 }

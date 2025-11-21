@@ -31,3 +31,4 @@ C:\Users\Admin\source\repos\Hakatonv2\Hakatonv2\bin\Debug\System.Memory.xml
 C:\Users\Admin\source\repos\Hakatonv2\Hakatonv2\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\Admin\source\repos\Hakatonv2\Hakatonv2\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Admin\source\repos\Hakatonv2\Hakatonv2\obj\Debug\Hakatonv2.FormSelectBP.resources
+C:\Users\Admin\source\repos\Hakatonv2\Hakatonv2\obj\Debug\Hakatonv2.FormSoundEdit.resources

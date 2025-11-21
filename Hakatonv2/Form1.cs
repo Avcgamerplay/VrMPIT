@@ -20,6 +20,9 @@ namespace Hakatonv2
 {
     public partial class Form1 : Form
     {
+        int sudId = 0;
+
+        public List<Sud> suds = new List<Sud>();
         public Form1(Patient patient)
         {
             NetworkManager.StartServer();
@@ -112,6 +115,20 @@ namespace Hakatonv2
                     case "sud":
                         start_bp_button.Enabled = true;
                         start_emdr_button.Enabled = true;
+                        string sudLvl = parts[1];
+                        string sceneMane = parts[2];
+                        string volumeEffects = parts[3];
+                        Sud newSud = new Sud();
+                        newSud.sudLvl = sudLvl;
+                        newSud.sceneName = sceneMane;
+                        newSud.volume = volumeEffects;
+                        newSud.sudId = sudId;
+
+                        suds.Add(newSud);
+
+                        LoadData();
+
+                        sudId++;
                         break;
 
                     case "bp_choose":
@@ -339,19 +356,19 @@ namespace Hakatonv2
 
             AddTableHeaders();
 
-            // Добавляем строки с данными
-            for (int i = 1; i <= 10; i++)
+            for(int i = 1; i < suds.Count + 1; i++)
             {
                 AddTableRow(
                     id: i.ToString(),
-                    text1: $"Текст 1-{i}",
-                    text2: $"Текст 2-{i}",
-                    text3: $"Текст 3-{i}",
-                    text4: $"Текст 4-{i}",
+                    text1: $"{suds[i-1].sudId}",
+                    text2: $"{suds[i-1].sceneName}",
+                    text3: $"{suds[i-1].volume}",
+                    text4: $"{1}",
                     image: SystemIcons.Information.ToBitmap(),
                     tooltip: $"Подробная информация для строки {i}"
                 );
             }
+
         }
 
         private void AddTableRow(string id, string text1, string text2, string text3, string text4, Image image, string tooltip)
@@ -522,19 +539,10 @@ namespace Hakatonv2
             Series series = chart1.Series[0];
             series.Points.Clear();
 
-            // Пример 1: Синусоида
-            for (double x = 0; x <= 10; x += 0.1)
+            for(int i = 0; i < suds.Count; i++)
             {
-                double y = 5 + 5 * Math.Sin(x); // От 0 до 10
-                series.Points.AddXY(x, y);
+                series.Points.AddXY(i * 0.1f, suds[i].sudLvl);
             }
-
-            // Или Пример 2: Квадратичная функция
-            // for (double x = 0; x <= 10; x += 0.1)
-            // {
-            //     double y = 0.1 * x * x; // Парабола от 0 до 10
-            //     series.Points.AddXY(x, y);
-            // }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -549,5 +557,26 @@ namespace Hakatonv2
 
             saveDialog.Show(); // Форма будет существовать пока не закроется
         }
+
+        private void effewcts_button_Click(object sender, EventArgs e)
+        {
+            FormSoundEdit saveDialog = new FormSoundEdit();
+
+            saveDialog.FormClosed += (s, args) =>
+            {
+                Debug.WriteLine("Новая форма закрыта");
+                saveDialog.Dispose();
+            };
+
+            saveDialog.Show();
+        }
+    }
+
+    public class Sud
+    {
+        public int sudId;
+        public string volume;
+        public string sudLvl;
+        public string sceneName;
     }
 }
