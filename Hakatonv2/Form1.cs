@@ -127,6 +127,7 @@ namespace Hakatonv2
                         suds.Add(newSud);
 
                         LoadData();
+                        AddDataToChart();
 
                         sudId++;
                         break;

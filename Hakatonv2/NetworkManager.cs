@@ -147,6 +147,7 @@ namespace Hakatonv2
                     if (bytesRead == 0) break;
 
                     string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                    Debug.WriteLine(message);
                     onStringEvent?.Invoke(message.Split('/'));
                 }
                 catch (Exception ex)
