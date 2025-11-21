@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Diagnostics;
 using LibVLCSharp.Shared;
+using System.Collections;
 
 
 namespace Hakatonv2
@@ -16,93 +17,63 @@ namespace Hakatonv2
     public partial class FormSceneSelection : Form
     {
         //private TableLayoutPanel tableLayoutPanel;
-        private List<Scene> questScenes;
-
         public Scene SelectedScene { get; private set; }
 
         private static FileSender fileSender;
 
+        bool msgGetted;
+
         public FormSceneSelection()
         {
-            fileSender = new FileSender();
+            //fileSender = new FileSender();
             InitializeComponent();
 
-            Debug.WriteLine("Запустили выбор сцены");
+            NetworkManager.onStringEvent += ProcessIncomingMessage;
 
             // Запрашиваем список сцен с Quest 3
-            //RequestQuestScenes();
-            InitializeGrid();
 
-            fileSender.StartFileSender();
+            RequestQuestScenes();
+
+            //fileSender.StartFileSender();
         }
 
-        /*private void RequestQuestScenes()
+        private void RequestQuestScenes()
         {
-            try
-            {
-                SendMessage("get_scenes");
-
-                // Запускаем поток для приема списка сцен
-                Thread receiveThread = new Thread(new ThreadStart(ReceiveQuestScenes));
-                receiveThread.IsBackground = true;
-                receiveThread.Start();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка запроса сцен с Quest 3: {ex.Message}", "Ошибка",
-                              MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            NetworkManager.SendMessage("get_all_scene");
         }
 
-        private void ReceiveQuestScenes()
+        private void ProcessIncomingMessage(string[] message)
         {
-            byte[] buffer = new byte[4096];
-            int bytesRead;
+            Console.WriteLine($"Получено: {message[0]}");
 
-            try
+            string[] parts = message[0].Split('|');
+            string command = parts[0];
+
+            Invoke(new Action(() =>
             {
-                bytesRead = stream.Read(buffer, 0, buffer.Length);
-                if (bytesRead > 0)
+                switch (command)
                 {
-                    string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                    ProcessSceneList(message);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка приема списка сцен: {ex.Message}");
-            }
-        }*/
-
-        private void ProcessSceneList(string message)
-        {
-            if (message.StartsWith("scenes_list|"))
-            {
-                string[] scenes = message.Split('|');
-                questScenes = new List<Scene>();
-
-                for (int i = 1; i < scenes.Length; i += 3) // name|duration|size
-                {
-                    if (i + 2 < scenes.Length)
-                    {
-                        var questScene = new Scene
+                    case "all_scene":
+                        for (int i = 1; i < parts.Length; i++)
                         {
-                            FileName = scenes[i],
-                            Duration = scenes[i + 1],
-                            FileSize = long.Parse(scenes[i + 2]),
-                            IsAvailableOnQuest = true
-                        };
+                            Scene newScene = new Scene();
+                            newScene.Name = parts[i];
 
-                        questScenes.Add(questScene);
+                            for(int j = 0; j < SceneManager.scenes.Count; j++)
+                            {
+                                if (SceneManager.scenes[j].Name == newScene.Name)
+                                {
+                                    SceneManager.scenes[j].IsAvailableOnQuest = true;
+                                }
+                            }
 
-                        // Проверяем, есть ли такая сцена на PC
-                        //CheckAndAddScene(questScene);
-                    }
+                            SceneManager.scenesOnQuest.Add(newScene);
+                        }
+                        msgGetted = true;
+                        InitializeGrid();
+                        break;
                 }
-
-                // Обновляем UI в главном потоке
-                Invoke(new Action(() => RefreshGrid()));
-            }
+            }));
         }
 
         private void InitializeGrid()

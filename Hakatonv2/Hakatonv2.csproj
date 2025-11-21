@@ -141,6 +141,12 @@
     <Compile Include="FormSceneSelection.Designer.cs">
       <DependentUpon>FormSceneSelection.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSelectBP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelectBP.Designer.cs">
+      <DependentUpon>FormSelectBP.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormSessionAllInformation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -192,6 +198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSceneSelection.resx">
       <DependentUpon>FormSceneSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelectBP.resx">
+      <DependentUpon>FormSelectBP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSessionAllInformation.resx">
       <DependentUpon>FormSessionAllInformation.cs</DependentUpon>

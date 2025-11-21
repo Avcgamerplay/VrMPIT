@@ -15,6 +15,7 @@ namespace Hakatonv2
     {
         public static string scenesPath => Path.Combine(Application.StartupPath, "Scenes");
         public static List<Scene> scenes = new List<Scene>();
+        public static List<Scene> scenesOnQuest = new List<Scene>();
 
         public static void StartSceneManager()
         {

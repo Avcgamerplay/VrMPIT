@@ -19,7 +19,7 @@ namespace Hakatonv2
         {
             InitializeComponent();
             InitializeImageReceiver();
-            //ToggleImageReceiver();
+            ToggleImageReceiver();
         }
 
         private void InitializeImageReceiver()
@@ -27,7 +27,7 @@ namespace Hakatonv2
             NetworkManager.SendMessage("get_stream_start");
             // Создаем PictureBox для отображения изображений
 
-            btnStartImageReceiver.Click += (s, e) => ToggleImageReceiver();
+            btnStartImageReceiver.Click += (s, e) => Hide();
 
             imageUpdateTimer = new System.Windows.Forms.Timer();
             imageUpdateTimer.Interval = 100; // 10 FPS
@@ -66,7 +66,15 @@ namespace Hakatonv2
             {
                 pictureBoxPreview.Image.Dispose();
             }
-            pictureBoxPreview.Image = (Image)image.Clone();
+
+            try
+            {
+                pictureBoxPreview.Image = (Image)image.Clone();
+            }
+            catch
+            {
+
+            }
             //btnSaveImage.Enabled = true;
         }
 

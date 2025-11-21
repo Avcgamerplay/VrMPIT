@@ -58,6 +58,12 @@ namespace Hakatonv2
 
         public static void StartServer()
         {
+
+            if (isServerRunning)
+            {
+                return;
+            }
+
             Debug.WriteLine("Запуск сервера");
 
             _httpClient = new HttpClient();

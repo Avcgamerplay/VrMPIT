@@ -259,13 +259,7 @@ namespace Hakatonv2
 
         private void button2_Click(object sender, EventArgs e)
         {
-            using (var saveDialog = new FormShowStream())
-            {
-                if (saveDialog.ShowDialog() == DialogResult.OK)
-                {
 
-                }
-            }
         }
     }
 

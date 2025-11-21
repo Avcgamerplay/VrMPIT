@@ -28,7 +28,7 @@ namespace Hakatonv2
 
             patient_name_label.Text = $"Пациент: {patient.FirstName}";
 
-            ShowMainPanel();
+            //ShowMainPanel();
 
             //NetworkManager.StartServer();
             NetworkManager.onStringEvent += ProcessIncomingMessage;
@@ -81,6 +81,50 @@ namespace Hakatonv2
                         ShowMainPanel();
                         break;
 
+                    case "all_scene":
+                        for(int i = 1; i < parts.Length; i++)
+                        {
+                            Scene newScene = new Scene();
+                            newScene.Name = parts[i];
+
+                            SceneManager.scenesOnQuest.Add(newScene);
+                        }
+                        break;
+
+                    case "scene_not_added":
+                        break;
+
+                    case "scene_loading":
+                        stream_button.Enabled = true;
+                        pause_button.Enabled = true;
+                        start_bp_button.Enabled = false;
+                        start_emdr_button.Enabled = false;
+                        break;
+
+                    case "paused":
+                        pause_button.Text = "Продолжить";
+                        break;
+
+                    case "unpaused":
+                        pause_button.Text = "Пауза";
+                        break;
+
+                    case "sud":
+                        start_bp_button.Enabled = true;
+                        start_emdr_button.Enabled = true;
+                        break;
+
+                    case "bp_choose":
+                        start_bp_button.Text = "Вернуться на сцену";
+                        start_emdr_button.Enabled = false;
+                        break;
+
+                    case "emdrStart":
+                        start_emdr_button.Text = "Вернуться на сцену";
+                        start_bp_button.Text = "Безопасное место";
+                        start_bp_button.Enabled = true;
+                        break;
+
                         /*case "sud":
                             if (parts.Length >= 3)
                             {
@@ -114,7 +158,7 @@ namespace Hakatonv2
 
         private void UpdateStatus(string status)
         {
-            lblStatus.Text = status;
+            //lblStatus.Text = status;
             if (status.Contains("подключен"))
             {
                 lblStatus.ForeColor = Color.Green;
@@ -192,7 +236,7 @@ namespace Hakatonv2
                 //btnStartScene.Enabled = !string.IsNullOrEmpty(txtPatientID.Text);
 
                 // Отправляем команду на загрузку выбранной сцены
-                NetworkManager.SendMessage($"load_scene|{selectedScene.FileName}");
+                NetworkManager.SendMessage($"load_scene|{selectedScene.Name}");
             }
         }
 
@@ -491,6 +535,19 @@ namespace Hakatonv2
             //     double y = 0.1 * x * x; // Парабола от 0 до 10
             //     series.Points.AddXY(x, y);
             // }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormShowStream saveDialog = new FormShowStream();
+
+            saveDialog.FormClosed += (s, args) =>
+            {
+                Debug.WriteLine("Новая форма закрыта");
+                saveDialog.Dispose(); // Освобождаем ресурсы при закрытии
+            };
+
+            saveDialog.Show(); // Форма будет существовать пока не закроется
         }
     }
 }

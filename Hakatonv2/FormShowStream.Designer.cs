@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormShowStream));
             this.pictureBoxPreview = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnStartImageReceiver = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnStartImageReceiver = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -59,17 +59,6 @@
             this.panel1.Size = new System.Drawing.Size(200, 513);
             this.panel1.TabIndex = 1;
             // 
-            // btnStartImageReceiver
-            // 
-            this.btnStartImageReceiver.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStartImageReceiver.Location = new System.Drawing.Point(3, 461);
-            this.btnStartImageReceiver.Name = "btnStartImageReceiver";
-            this.btnStartImageReceiver.Size = new System.Drawing.Size(194, 49);
-            this.btnStartImageReceiver.TabIndex = 0;
-            this.btnStartImageReceiver.Text = "Запуск трансляции";
-            this.btnStartImageReceiver.UseVisualStyleBackColor = true;
-            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -79,6 +68,17 @@
             this.label1.Size = new System.Drawing.Size(100, 23);
             this.label1.TabIndex = 1;
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnStartImageReceiver
+            // 
+            this.btnStartImageReceiver.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStartImageReceiver.Location = new System.Drawing.Point(3, 461);
+            this.btnStartImageReceiver.Name = "btnStartImageReceiver";
+            this.btnStartImageReceiver.Size = new System.Drawing.Size(194, 49);
+            this.btnStartImageReceiver.TabIndex = 0;
+            this.btnStartImageReceiver.Text = "Остановить трансляции";
+            this.btnStartImageReceiver.UseVisualStyleBackColor = true;
             // 
             // FormShowStream
             // 

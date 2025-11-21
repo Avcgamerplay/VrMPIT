@@ -48,6 +48,7 @@
             this.button_open_choose_scene = new System.Windows.Forms.Button();
             this.already_scene_name = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.stream_button = new System.Windows.Forms.Button();
             this.base_panel.SuspendLayout();
             this.main_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -120,7 +121,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 76.8421F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 94F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 97F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 106F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 107F));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(10, 224);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -164,6 +165,7 @@
             this.panel_control.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel_control.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel_control.Controls.Add(this.stream_button);
             this.panel_control.Controls.Add(this.stop_button);
             this.panel_control.Controls.Add(this.start_emdr_button);
             this.panel_control.Controls.Add(this.start_bp_button);
@@ -196,6 +198,7 @@
             // 
             this.start_emdr_button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.start_emdr_button.Enabled = false;
             this.start_emdr_button.Font = new System.Drawing.Font("Arial Black", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.start_emdr_button.Location = new System.Drawing.Point(19, 331);
             this.start_emdr_button.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -210,6 +213,7 @@
             // 
             this.start_bp_button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.start_bp_button.Enabled = false;
             this.start_bp_button.Font = new System.Drawing.Font("Arial Black", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.start_bp_button.Location = new System.Drawing.Point(19, 283);
             this.start_bp_button.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -224,6 +228,7 @@
             // 
             this.pause_button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pause_button.Enabled = false;
             this.pause_button.Font = new System.Drawing.Font("Arial Black", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.pause_button.Location = new System.Drawing.Point(19, 234);
             this.pause_button.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -257,7 +262,7 @@
             this.already_scene_name.Name = "already_scene_name";
             this.already_scene_name.Size = new System.Drawing.Size(192, 25);
             this.already_scene_name.TabIndex = 2;
-            this.already_scene_name.Text = "ntcn";
+            this.already_scene_name.Text = "сцена не выбрана";
             this.already_scene_name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
@@ -272,6 +277,21 @@
             this.label1.Text = "Панель управления сценой";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // stream_button
+            // 
+            this.stream_button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stream_button.Enabled = false;
+            this.stream_button.Font = new System.Drawing.Font("Arial Black", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.stream_button.Location = new System.Drawing.Point(19, 185);
+            this.stream_button.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.stream_button.Name = "stream_button";
+            this.stream_button.Size = new System.Drawing.Size(262, 43);
+            this.stream_button.TabIndex = 7;
+            this.stream_button.Text = "Запуск стрима";
+            this.stream_button.UseVisualStyleBackColor = true;
+            this.stream_button.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -315,6 +335,7 @@
         private System.Windows.Forms.Button stop_button;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label quest_status_test;
+        private System.Windows.Forms.Button stream_button;
     }
 }
 
